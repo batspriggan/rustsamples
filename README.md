@@ -12,6 +12,11 @@ OR to use an existing folder
 ```
 cargo init projectname
 ```
+push the newly created project to your github repo
+
+git remote add origin https://github.com/batspriggan/telegramhomebot.git
+git branch -M main
+git push -u origin main
 
 
 3) build the project

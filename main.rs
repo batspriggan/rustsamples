@@ -11,6 +11,8 @@ fn main() {
     _if_expression();
     _awesome_nested_loop();
     _arrays();
+    _borrowing();
+    _string_slice();
 }
 
 fn _guess_game() {
@@ -261,4 +263,39 @@ fn _basic_ownership() {
     let _s = "hello"; // s is valid from this point forward
 
     // do stuff with _s
+}
+
+fn _borrowing() {
+    let s1 = String::from("hello");
+
+    // s1 ownership is not handed to the fn calculate_length
+    // so when the fn returns s1 is still valid
+    // & is used to get a refererence to the variable
+    let len = _calculate_length(&s1);
+
+    println!("The length of '{}' is {}.", s1, len);
+}
+
+fn _calculate_length(s: &String) -> usize {
+    s.len()
+}
+
+fn _mutable_reference() {
+    let mut s = String::from("hello");
+    // passing the reference to a mutable, in the fn we can modify the variable but keeping ownership
+    _change(&mut s);
+}
+
+fn _change(some_string: &mut String) {
+    some_string.push_str(", world");
+}
+
+fn _string_slice() {
+    let s = String::from("hello world");
+
+    let _hello = &s[0..5];
+    let _world = &s[6..11];
+    println!("{_hello}");
+    println!("{_world}");
+    println!("{s}");
 }
